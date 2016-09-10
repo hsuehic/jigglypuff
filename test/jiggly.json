@@ -13,5 +13,21 @@
         "data2.js"
       ]
     }
+  },
+  "proxyTable":{
+    "/biangejia": {
+      "target": "http://biangejia.baijia.baidu.com/",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/biangejia": "/"
+      }
+    },
+    "/static/": {
+      "target": "http://biangejia.baijia.baidu.com/",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/static": "/static"
+      }
+    }
   }
 }

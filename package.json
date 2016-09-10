@@ -1,19 +1,28 @@
 {
-  "name": "jigglypuff",
-  "description": "Fake terminus pampas web container",
+  "name": "jigglypuff-proxy",
+  "description": "Fake terminus pampas web container, added proxy and using asynchronous data functionality by Richard, for integrated test purpose",
   "author": {
     "name": "Anson Chan"
   },
-  "version": "0.0.23",
+  "fork": {
+    "name": "Richard",
+    "email": "xiaoweihsueh@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:hsuehic/jigglypuff.git"
+  },
+  "version": "0.0.23.1",
   "dependencies": {
+    "async": "~0.2.9",
+    "commander": "~2.5.0",
     "express": "~4",
     "handlebars": "4.0.4",
+    "http-proxy-middleware": "^0.17.1",
     "lodash": "~2.4.1",
-    "async": "~0.2.9",
-    "tracer": "~0.6.1",
-    "redis": "~0.10.0",
     "node-watch": "~0.3.4",
-    "commander": "~2.5.0"
+    "redis": "~0.10.0",
+    "tracer": "~0.6.1"
   },
   "devDependencies": {
     "should": "~2.1.1",
@@ -21,7 +30,7 @@
     "mocha": "~1.17.0"
   },
   "bin": {
-    "jiggly": "./bin/jiggly"
+    "jigglyp": "./bin/jiggly"
   },
   "scripts": {
     "compile": "rm -rf ./lib && coffee --compile --output lib/ src/",
@@ -29,6 +38,6 @@
     "build": "npm i -g .",
     "debug": "npm run compile && node --debug-brk ./lib/index.js",
     "test": "cd test && env NODE_ENV=test mocha **/*.coffee --compilers coffee:coffee-script --require should -R spec",
-    "start": "coffee ./src/index.coffee"
+    "start": "cd test && coffee ../src/index.coffee"
   }
 }

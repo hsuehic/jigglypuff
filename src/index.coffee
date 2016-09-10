@@ -7,10 +7,21 @@ env = require "./enviroments"
 # require render to init render enviroment
 render = require "./handlebars/render"
 express = require "express"
+ProxyMiddleware = require "http-proxy-middleware"
 dataProvider = require "./data_provider"
 {FileNotFoundError} = require "./errors"
 
 app = express()
+
+console.log(env)
+
+proxyTable = env.proxyTable
+if proxyTable
+  proxyKeys = Object.keys proxyTable
+  proxyKeys.forEach (key) ->
+    opts = proxyTable[key]
+    middleware = new ProxyMiddleware(key, opts)
+    app.use middleware
 
 # render file to html when no dot in path
 app.get /^([^\.]+)$/, (req, res, next) ->

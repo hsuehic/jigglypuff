@@ -34,7 +34,10 @@ All options has default value below:
       "dataFile": [],
       "extraHelpers": [],
       "oldMode": false,
-      "pageMode": false
+      "pageMode": false,
+      "proxy":{
+        
+      }
     }
 
 The config file (`jiggly.json`) can include multiple option groups. Depend on env variable `NODE_ENV`, one group will be loaded.
